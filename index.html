@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Evaluación diagnóstica de Introducción al Desarrollo Front End con HTML, CSS y JavaScript" />
+        <meta name="keywords" content="HTML, CSS, JavaScript" />
+        <meta name="author" content="Bastian Lobos" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="style.css" rel="stylesheet" />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"
+            integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <title>Portada | Pestañas Interactivas</title>
+    </head>
+    <body>
+        <div id="uno">
+            <strong><a href="index.html">PORTADA</a></strong>
+        </div>
+        <div id="otro"><a href="page_1.html">01</a> / <a href="page_2.html">02</a> / <a href="page_3.html">03</a></div>
+        <div>
+            <h1>Hola! Me llamo Bastian, pero me dicen <span id="nickname"></span></h1>
+            <p>He diseñado esta pagina que contiene tres pestanas interactivas distintas, las cuales contienen figuras que reaccionan al movimiento realizado con el mouse.</p>
+            <p>
+                La primera pestaña muestra dos circulos de distinto color que reaccionan al movimiento que se realice en el eje X con el mouse, vale decir ambas figuras se veran afectadas por cualquier movimiento realizado hacia la
+                izquierda o hacia la derecha.
+            </p>
+            <p>
+                Luego tenemos la segunda pestaña que tiene un funcionamiento muy similar a la primera, pero en esta se ha añadido el eje Y, por lo tanto ahora las figuras son afectadas por los movimento realizados hacia arriba o abajo con
+                el mouse, y tambien a los movimientos mencionados en el parrafo anterior.
+            </p>
+            <p>Y por ultimo, la tarcera pestaña nos muestra dos esferas estaticas las cuales seran afectadas con una luz dependiendo de la posicion del cursor.</p>
+        </div>
+        <script>
+            var r = ["basti", "bastilo", "bastiloestacogido", "bastilotibas"];
+            function setup() {
+                createCanvas(windowWidth - 50, windowHeight - 50)
+                    .position(25, 30)
+                    .style("z-index", -1);
+                btn = createButton("Descargar");
+                btn.position(windowWidth - 110, windowHeight - 48);
+                btn.mousePressed(captura);
+                document.getElementById("nickname").textContent += random(r);
+            }
+            function draw() {
+                background(225);
+                textSize(20);
+                text("🐺", mouseX, mouseY);
+                noStroke();
+                fill(0);
+                ellipse(mouseX + 13, mouseY + 13, 18, 3);
+            }
+            function captura() {
+                saveCanvas("imagen", "jpg");
+            }
+            function windowResized() {
+                resizeCanvas(windowWidth - 50, windowHeight - 50);
+            }
+        </script>
+    </body>
+</html>
